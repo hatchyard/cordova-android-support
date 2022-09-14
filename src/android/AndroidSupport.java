@@ -26,7 +26,7 @@ public class AndroidSupport extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         this.callback = callbackContext;
         this.plugin = this;
-        if (action.equals("start")) {
+        if (action.equals("patch")) {
             return this.getPatchedAndroidSupport(callbackContext);
         }
         return false;

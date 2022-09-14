@@ -6,7 +6,6 @@
     </js-module>
     <platform name="android">
         <framework src="com.google.android.gms:play-services-auth:20.1.0"/>
-        <framework src="com.google.android.gms:play-services-auth-api-phone:18.0.1"/>
         <config-file parent="/*" target="res/xml/config.xml">
             <feature name="AndroidSupport">
                 <param name="android-package" value="com.android.androidsupport.AndroidSupport" />
