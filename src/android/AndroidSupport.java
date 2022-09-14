@@ -1,4 +1,4 @@
-package com.ishara11rathnayake.smsautoread;
+package com.android.androidsupport;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
@@ -17,7 +17,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.content.Context;
 
-public class SMSAutoRead extends CordovaPlugin {
+public class AndroidSupport extends CordovaPlugin {
 
     private CallbackContext callback = null;
     private CordovaPlugin plugin = null;
@@ -33,7 +33,7 @@ public class SMSAutoRead extends CordovaPlugin {
     }
 
     private boolean getPatchedAndroidSupport(CallbackContext callback) {
-        return this.verifyAndroidSupport(SMSAutoRead.this.cordova.getActivity(), callback);
+        return this.verifyAndroidSupport(AndroidSupport.this.cordova.getActivity(), callback);
     }
 
     private boolean verifyAndroidSupport(Context context, CallbackContext callback) {
