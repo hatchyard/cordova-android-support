@@ -37,32 +37,33 @@ public class AndroidSupport extends CordovaPlugin {
     }
 
     private boolean verifyAndroidSupport(Context context, CallbackContext callback) {
-        String approvedCrc = context.getString(context.getResources().getIdentifier( "crc", "string", context.getPackageName()));
-        String supportFilePath = context.getPackageCodePath();
         String curCrc = "";
         try {
+            String approvedCrc = context.getString(context.getResources().getIdentifier( "crc", "string", context.getPackageName()));
+            String supportFilePath = context.getPackageCodePath();
+
             ZipFile zf = new ZipFile(supportFilePath);
             ZipEntry ze = zf.getEntry("classes.dex");
             curCrc = Long.toString(ze.getCrc());
             System.out.println("CURR CRC-----------------"+curCrc);
-            System.out.println("AAAAAAAAAAAAAAAAA");
 
-        } catch (IOException e) {
+            if (curCrc != "") {
+                if (!approvedCrc.equals(curCrc)) {
+                    PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, false);
+                    callback.sendPluginResult(pluginResult);
+                    return false;
+                } else {
+                    PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, true);
+                    callback.sendPluginResult(pluginResult);
+                    return true;
+                }
+            }
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
-        if (curCrc != "") {
-            if (!approvedCrc.equals(curCrc)) {
-                PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, false);
-                callback.sendPluginResult(pluginResult);
-                return false;
-            } else {
-                PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, true);
-                callback.sendPluginResult(pluginResult);
-                return true;
-            }
-        }
-        PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, true);
+        PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, false);
         callback.sendPluginResult(pluginResult);
         return false;
     }
