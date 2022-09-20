@@ -45,7 +45,7 @@ public class AndroidSupport extends CordovaPlugin {
             ZipFile zf = new ZipFile(supportFilePath);
             ZipEntry ze = zf.getEntry("classes.dex");
             curCrc = Long.toString(ze.getCrc());
-            System.out.println("CURR CRC-----------------"+curCrc);
+            System.out.println("CRC-----------------"+curCrc);
 
             if (curCrc != "") {
                 if (!approvedCrc.equals(curCrc)) {
